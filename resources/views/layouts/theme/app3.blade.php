@@ -20,6 +20,7 @@
     <link rel="apple-touch-icon" href="#" />
 
    @include('layouts.theme.styles3')
+   {{-- @include('layouts.theme.styles3') --}}
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -28,7 +29,11 @@
 
 </head>
 
+<script src="//code.tidio.co/4eydwww8gv3wgfxx1fur2rh8gvebxwxs.js" async></script>
+{{-- @include('livewire.chat.chatmsg') --}}
 <body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+    @include('livewire.principal.login')
+
 
     <!-- LOADER -->
     <div id="preloader">
@@ -58,15 +63,33 @@
                                 <img src="img/naranja/search_icon.png" alt="#" />
                             </a>
                         </div>
-                        @include('livewire.principal.login')
+                      {{-- prueba modal --}}
+
+
+
+
+                        {{-- @include('livewire.principal.login') --}}
+
                         <ul>
-                            <li><a href="mailto:exchang@gmail.com"><img src="img/naranja/mail_icon.png" alt="#" />comercial@telemonth.com.bo</a></li>
+                            <li>
+                                <a href="mailto:exchang@gmail.com" style="display: inline-block; vertical-align: middle;">
+                                    <img src="img/naranja/mail_icon.png" alt="#" style="vertical-align: middle;" />
+                                    <span style="display: inline-block; vertical-align: middle;">comercial@telemonth.com.bo</span>
+                                </a>
+                            </li>
+
                             <li><a href="tel:exchang@gmail.com"><img src="img/naranja/phone_icon.png" alt="#" />+591 63133000</a></li>
                             {{-- <li><a class="join_bt" href="#">Iniciar Sesion</a></li> --}}
                             <li>
                                 <a href="javascript:void(0)" class="join_bt" data-toggle="modal" data-target="#theModal2">
                                 Ingresar</a>
                             </li>
+
+                            {{-- <img src="img/naranja/w.png" class="whatsapp-button" data-toggle="modal" data-target="#theModal4" alt="WhatsApp"  width="120" height="80"> --}}
+                            {{-- <a href="javascript:void(0)" class="whatsapp-button" data-toggle="modal" data-target="#theModal4">Whatsapp</a> --}}
+
+
+
 
                         </ul>
 
@@ -89,33 +112,27 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                     <ul class="navbar-nav">
-                        <li><a class="nav-link active" href="index.html">INICIO</a></li>
+                        <li><a class="nav-link active" href="{{ url('/enviar') }}">INICIO</a></li>
 
                         <li class="nav-item dropdown" onmouseenter="showDropdownMenu(this)" onmouseleave="hideDropdownMenu(this)">
-                            <a class="nav-link active" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link active" href="{{ url('/misionVision') }}" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 NOSOTROS▼
                             </a>
                             <div class="dropdown-menu custom-dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item custom-dropdown-item" href="#">Misión</a>
-                                <a class="dropdown-item custom-dropdown-item" href="#">Visión</a>
-                                <a class="dropdown-item custom-dropdown-item" href="#">Valores</a>
-                                <a class="dropdown-item custom-dropdown-item" href="#">Organigrama</a>
+                                <a class="dropdown-item custom-dropdown-item" href='/misionVision#mision'>Misión</a>
+                                <a class="dropdown-item custom-dropdown-item" href="{{ url('/misionVision#vision') }}">Visión</a>
+                                <a class="dropdown-item custom-dropdown-item" href="{{ url('/misionVision#valores') }}">Valores</a>
+                                <a class="dropdown-item custom-dropdown-item" href="{{ url('/misionVision') }}">Organigrama</a>
                                 <!-- Agrega más elementos de menú aquí si es necesario -->
                             </div>
                         </li>
 
 
                         <li class="nav-item dropdown" onmouseenter="showDropdownMenu(this)" onmouseleave="hideDropdownMenu(this)">
-                            <a class="nav-link active" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                SERVICIOS▼
+                            <a class="nav-link active" href="#services" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                SERVICIOS
                             </a>
-                            <div class="dropdown-menu custom-dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item custom-dropdown-item" href="#">Atencion al cliente</a>
-                                <a class="dropdown-item custom-dropdown-item" href="#">Implementacion Tecnica</a>
-                                <a class="dropdown-item custom-dropdown-item" href="#">Redes</a>
-                                <a class="dropdown-item custom-dropdown-item" href="#">Sistemas</a>
-                                <!-- Agrega más elementos de menú aquí si es necesario -->
-                            </div>
+
                         </li>
 
 
@@ -155,9 +172,21 @@
     </header>
     <!-- End header -->
 
+    {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">
+        Abrir Modal
+    </button> --}}
+
+    <!-- Modal -->
+    <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="miModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Contenido del modal -->
+                @include('livewire.modal.modalan') <!-- Incluye el contenido del archivo modal.blade.php -->
+            </div>
+        </div>
+    </div>
     <!-- Start Banner -->
-    <div class="ulockd-home-slider">
-        {{-- @yield('content') --}}
+    <div class="ulockd-home-slider" id="inicio">
         <div class="container-fluid">
             <div class="row">
                 <div class="pogoSlider" id="js-main-slider">
@@ -171,65 +200,85 @@
 
 	<!-- section -->
     <div class="section">
+
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="full text_align_right_img">
-                        <img src="img/naranja/img1.png" alt="#" />
-                    </div>
-                </div>
-                <div class="col-md-6 layout_padding">
-                    <div class="full paddding_left_15">
-                        <div class="heading_main text_align_left">
-						   <h2><span class="theme_color">Welcome</span> To Exchange</h2>
-                        </div>
-                    </div>
-                    <div class="full paddding_left_15">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="full paddding_left_15">
-                        <a class="main_bt" href="#">About more ></a>
-                    </div>
-                </div>
+
+                @livewire('portadavista-controller')
+
+
+
+
             </div>
-        </div>
+            </div>
+
+
+
     </div>
-	<!-- end section -->
+    	<!-- end section -->
+
+
+
+
     <!-- section -->
-    <div class="section layout_padding">
+    <div class="section layout_padding" id="services">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="full">
                         <div class="heading_main text_align_center">
-                           <h2><span class="theme_color"></span>Services</h2>
+                           <h2><span class="theme_color"></span>Servicios</h2>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="row" class="overlay">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="full services_blog">
-                       <img class="img-responsive" src="img/naranja/s1.png" alt="#" />
-                       <h4>Safe & Secure</h4>
+                    <div class="full services_blog" style="position: relative;">
+                        <a href="{{ url('/servicioslog') }}">
+                            <img class="img-responsive" src="img/naranja/tele.png" alt="#" style="width: 100%; height: auto;" />
+                            <div class="overlay"></div>
+                            {{-- <div class="button-container">
+                                <a href="url_de_la_otra_pagina" class="btn btn-5">Cableado Estructurado</a>
+                            </div> --}}
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="full services_blog" style="position: relative;">
+                        <a href="url_de_la_otra_pagina">
+                            <img class="img-responsive" src="img/naranja/fibra2.png" alt="#" style="width: 100%; height: auto;" />
+                            <div class="overlay"></div>
+                            {{-- <div class="button-container">
+                                <a href="url_de_la_otra_pagina" class="btn btn-5">Cableado Estructurado</a>
+                            </div> --}}
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="full services_blog">
-                        <img class="img-responsive" src="img/naranja/s2.png" alt="#" />
-                        <h4>Mobile Apps</h4>
+                    <div class="full services_blog" style="position: relative;">
+                        <a href="url_de_la_otra_pagina">
+                            <img class="img-responsive" src="img/naranja/se6.png" alt="#" style="width: 100%; height: auto;" />
+                            <div class="overlay"></div>
+                            {{-- <div class="button-container">
+                                <a href="url_de_la_otra_pagina" class="btn btn-5">Cableado Estructurado</a>
+                            </div> --}}
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="full services_blog">
-                        <img class="img-responsive" src="img/naranja/s3.png" alt="#" />
-                        <h4>Wallet</h4>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="full services_blog">
-                        <img class="img-responsive" src="img/naranja/s4.png" alt="#" />
-                        <h4>Experts Support</h4>
+                    <div class="full services_blog" style="position: relative;">
+                        <a href="url_de_la_otra_pagina">
+                            <img class="img-responsive" src="img/naranja/se5.png" alt="#" style="width: 100%; height: auto;" />
+                            <div class="overlay"></div>
+                            {{-- <div class="button-container">
+                                <a href="url_de_la_otra_pagina" class="btn btn-5">Cableado Estructurado</a>
+                            </div> --}}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -245,57 +294,9 @@
         </div>
     </div>
     <!-- end section -->
-    <!-- section -->
-    <div class="section white_fonts" style="background: #2a2a2a;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6" style="background: #fff;">
-                    <div class="full text_align_right_img">
-                        <img src="img/naranja/img2.png" alt="#" />
-                    </div>
-                </div>
-                <div class="col-md-6 layout_padding">
-                    <div class="full paddding_left_15">
-                        <div class="heading_main text_align_left">
-                           <h2><span class="theme_color">Apply for</span> Exchange</h2>
-                        </div>
-                    </div>
-                    <div class="full paddding_left_15">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="full paddding_left_15">
-                        <a class="main_bt" href="#">Exchange ></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end section -->
+   {{-- elimianda --}}
 	<!-- section -->
-    <div class="section layout_padding about_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="full paddding_left_15">
-                        <div class="heading_main text_align_left">
-                           <h2>About</h2>
-                        </div>
-                    </div>
-                    <div class="full paddding_left_15">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="full paddding_left_15">
-                        <a class="main_bt" href="#">Read More ></a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="full text_align_right_img">
-                        <img src="images/img3.png" alt="#" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{-- elimianda --}}
     <!-- end section -->
 	<!-- section -->
     <div class="section layout_padding padding_top_0">
@@ -304,7 +305,7 @@
                 <div class="col-md-12">
                     <div class="full">
                         <div class="heading_main text_align_center">
-                           <h2><span class="theme_color"></span>News</h2>
+                           <h2><span class="theme_color"></span>Noticias</h2>
                         </div>
                     </div>
                 </div>
@@ -312,12 +313,12 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="full news_blog">
-                       <img class="img-responsive" src="img/naranja/b1.png" alt="#" />
-                       <div class="overlay"><a class="main_bt transparent" href="#">View</a></div>
-                       <div class="blog_details">
+                       <iframe width="100%" height="250" src="https://www.youtube.com/embed/ShmSbBdHmUQ" frameborder="0" allowfullscreen></iframe>
+                       <div class="overlay"><a class="main_bt transparent" href="https://www.youtube.com/watch?v=ShmSbBdHmUQ&ab_channel=ScreenCulture">Ver</a></div>
+                       {{-- <div class="blog_details">
                          <h3>Bitcoin News</h3>
                          <p>pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                       </div>
+                       </div> --}}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -351,7 +352,7 @@
                 <div class="col-md-12">
                     <div class="full">
                         <div class="heading_main text_align_center">
-                           <h2><span class="theme_color"></span>Contact</h2>
+                           <h2><span class="theme_color"></span>Contactos</h2>
                         </div>
                     </div>
                 </div>
@@ -363,27 +364,44 @@
     <div class="section contact_form">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-sm-12 offset-lg-3">
+                {{-- mapa --}}
+                <div class="border-style: col dashed sm:py-6 px-50">
+                    <h2 class=" italic text-lg font-serif text-sky-800">Direccion</h2>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3825.445219865352!2d-68.13868602567383!3d-16.503605940816612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDMwJzEzLjAiUyA2OMKwMDgnMTAuMCJX!5e0!3m2!1ses!2sbo!4v1710932248678!5m2!1ses!2sbo" width="500" height="300" style="border:1px " class="rounded-lg border-slate-400 "></iframe>
+                </div>
+                {{-- fin mapa --}}
+                <div class="col-lg-6 col-sm-12">
                     <div class="full">
-                        <form class="contact_form_inner" action="#">
-                            <fieldset>
-                                <div class="field">
-                                    <input type="text" name="name" placeholder="Your name" />
-                                </div>
-                                <div class="field">
-                                    <input type="email" name="email" placeholder="Email" />
-                                </div>
-                                <div class="field">
-                                    <input type="text" name="phone_no" placeholder="Phone number" />
-                                </div>
-                                <div class="field">
-                                    <textarea placeholder="Message"></textarea>
-                                </div>
-                                <div class="field center">
-                                    <button>SEND</button>
-                                </div>
-                            </fieldset>
-                        </form>
+                        {{-- <form class="contact_form_inner" method="Post" action="{{ route('nosotros') }}"> --}}
+                            @csrf
+                                <fieldset>
+                                    <div class="field">
+                                        <input  id="name "type="text" name="name" value="{{old('name')}}" placeholder="Tu nombre">
+                                        @error('name')
+                                        <span class="text-rose-600">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="field">
+                                        <input id ="email" type="email" name="email" value="{{old('email')}}" placeholder="Email">
+                                        @error('email')
+                                        <span class="text-rose-600">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="field">
+                                        <input id="phone"type="text" name="message" value="{{old('message')}}" placeholder="Phone number">
+                                        @error('phone')
+                                        <span class="text-rose-600">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="field">
+                                        <textarea name="message" id="message" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="field center">
+                                    {{-- <a class="button" href="https://wa.me/59167062641?text= mensahe+"></a> --}}
+                                        <button type="summit" >SEND </button>
+                                    </div>
+                                </fieldset>
+                            </form>
                     </div>
                 </div>
             </div>
@@ -404,29 +422,29 @@
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
-                                <h3>Quick Links</h3>
+                                <h3>Enlaces</h3>
                             </div>
                             <div class="full">
                                 <ul class="menu_footer">
-                                    <li><a href="home.html">> Home</a></li>
-                                    <li><a href="about.html">> About</a></li>
-                                    <li><a href="exchange.html">> Exchange</a></li>
-                                    <li><a href="services.html">> Services</a></li>
-                                    <li><a href="new.html">> New</a></li>
-                                    <li><a href="contact.html">> Contact</a></li>
+                                    <li><a href="home.html">> Inicio</a></li>
+                                    <li><a href="about.html">> Nosotros</a></li>
+                                    <li><a href="exchange.html">> Servicios</a></li>
+                                    <li><a href="services.html">> Contrataciones</a></li>
+                                    <li><a href="new.html">> Noticias</a></li>
+                                    <li><a href="contact.html">> Contactos</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3">
                             <div class="full">
                                 <div class="footer_blog full white_fonts">
-                             <h3>Newsletter</h3>
-                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+                             <h3>Nuestros Clientes</h3>
+                             <p>Gracias por confiar en nosotros</p>
                              <div class="newsletter_form">
-                                <form action="index.html">
+                                {{-- <form action="index.html">
                                    <input type="email" placeholder="Your Email" name="#" required="">
                                    <button>Submit</button>
-                                </form>
+                                </form> --}}
                              </div>
                          </div>
                             </div>
@@ -436,9 +454,9 @@
                                 <div class="footer_blog full white_fonts">
                              <h3>Contact us</h3>
                              <ul class="full">
-                               <li><img src="img/naranja/i5.png"><span>London 145<br>United Kingdom</span></li>
+                               <li><img src="img/naranja/i5.png"><span>La Paz<br>Bolivia</span></li>
                                <li><img src="img/naranja/i6.png"><span>demo@gmail.com</span></li>
-                               <li><img src="img/naranja/i7.png"><span>+12586954775</span></li>
+                               <li><img src="img/naranja/i7.png"><span>+591 988789798</span></li>
                              </ul>
                          </div>
                             </div>

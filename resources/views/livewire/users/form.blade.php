@@ -46,15 +46,16 @@
     <div class="col-sm-12 col-md-6">
         <div class="form-group" style="padding: 10px;">
             <label>Asignar Rol</label>
-            <select wire:model.lazy="profile" class="form-control">
-               <option value="Elegir" selected>Elegir</option>
-               @foreach ($roles as $role)
-               <option value="{{$role->id}}" selected>{{$role->name}}</option>
-               @endforeach
+            <select wire:model="profile" class="form-control">
+                <option value="Elegir" selected>Elegir</option>
+                @foreach ($roles as $role)
+                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                @endforeach
             </select>
-            @error('profile') <span class="text-danger er">{{$message}}</span> @enderror
+            @error('profile') <span class="text-danger er">{{ $message }}</span> @enderror
         </div>
     </div>
+
     <div class="col-sm-12 col-md-6">
         <div class="form-group" style="padding: 10px;">
             <label>Imagen del perfil</label>

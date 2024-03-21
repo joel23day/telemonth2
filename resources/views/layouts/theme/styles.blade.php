@@ -104,5 +104,20 @@
 }
 </style>
 
+<style>
+    @font-face {
+        font-family: 'MiFuente1';
+        src: url('{{ asset('assets/fuentecer/Digital.ttf') }}') format('woff2');
+    }
+    .servicio {
+        position: absolute;
+        transform: translateX(-50%);
+        font-family: 'MiFuente1';
+        font-size: 60px;
+        color: #000;
+        white-space: nowrap;
+    }
+</style>
+
 @livewireStyles
 <link href="{{asset('plugins/flatpickr/flatpickr.dark.css') }}" rel="stylesheet" type="text/css">

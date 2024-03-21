@@ -40,53 +40,42 @@ class AnunciosController extends Component
       ->section('content');
   }
 
-    public function Store()
-    {
-        $rules = [
-           'nombre' => 'required|unique:anuncios|min:3',
-           'descripcion' => 'required',
-           'status' => 'required',
-           'fecha_inicio' => 'required',
-           'fecha_fin' => 'required',
 
-        ];
+  public function Store(){
+    $rules = [
+      'nombre' => 'required|unique:servicios|min:3',
+      'descripcion' => 'required'
+    ];
+    $messages = [
+       'nombre.required' => 'Nombre de la categorias es requerido',
+       'nombre.unique' => 'La categoria ya existe',
+       'nombre.min' => 'La categoria debe tener almenos 3 caracteres',
+       'descripcion.required' => 'Ingresa una descripcion para este curso',
+    ];
 
-        $messages = [
-           'nombre.required' => 'Nombre del curso requerido',
-           'nombre.unique' => 'Ya existe el nombre del curso',
-           'nombre.min' => 'El nombre del producto debe tener al menos 3 caracteres',
-           'descripcion.required' => 'Ingresa una descripcion para este curso',
-           'status.required' => 'Debes definir un estado para este curso',
-           'fecha_inicio' =>  'Debes ingresar una fecha de inicio del curso',
-           'fecha_fin' => 'Debes ingresar una fecha de finalizacion del curso',
+    $this->validate($rules, $messages);
 
-        ];
-
-        $this->validate($rules, $messages);
-
-        $curs = Curso::create ([
-          'nombre' => $this->nombre,
-          'descripcion' => $this->descripcion,
-          'status' => $this->status,
+    $category = Anuncio::create([
+       'nombre' =>$this-> nombre,
+       'descripcion' => $this->descripcion,
+       'status' => $this->status,
           'fecha_inicio' => $this-> fecha_inicio,
           'fecha_fin' => $this-> fecha_fin,
-          'categoria_id' => $this->categoryid,
-          'instructor_id' => $this->instructorid
-        ]);
+    ]);
 
-        if($this->image)
-        {
-            $customFileName = uniqid() . '_.' . $this->image->extension();
-            $this->image->storeAs('public/cursos', $customFileName);
-            $curs->image = $customFileName;
-            $curs->save();
-        }
-        //dd($curs);
-        $this->resetUI();
-        $this->emit('closemodal', 'Producto Actualizado');
-        $this->emit('cat_added', 'Curso Añadido');
 
+    if($this->image)
+    {
+     $customFileName = uniqid(). '_.' . $this->image->extension();
+     $this->image->storeAs('public/anuncios', $customFileName);
+     $category->imagen = $customFileName;
+     $category->save();
     }
+
+    $this->resetUI();
+    $this->emit('closemodal', 'Producto Actualizado');
+    $this->emit('cat_added', 'Curso Añadido');
+ }
 
     public function Edit(Curso $cur)
     {

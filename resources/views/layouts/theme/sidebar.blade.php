@@ -20,10 +20,10 @@
             {{-- @endrole --}}
 
             <li class="">
-                <a href="{{url('products')}}" class="menu-toggle" data-active="false">
+                <a href="{{url('servicios')}}" class="menu-toggle" data-active="false">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                            <i class="bi bi-journal-bookmark-fill text-light" style="font-size: 41px;"></i>
                         </div>
                         <span>SERVICIOS</span>
                     </div>
@@ -31,12 +31,23 @@
             </li>
 
             <li class="">
-                <a href="{{url('pos')}}" class="menu-toggle" data-active="false">
+                <a href="{{url('anuncios')}}" class="menu-toggle" data-active="false">
                     <div class="base-menu">
                         <div class="base-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            <i class="bi bi-chat-right-dots-fill text-light" style="font-size: 41px;"></i>
                         </div>
                         <span>ANUNCIOS</span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="">
+                <a href="{{url('port')}}" class="menu-toggle" data-active="false">
+                    <div class="base-menu">
+                        <div class="base-icons">
+                            <i class="bi bi-image text-light" style="font-size: 41px;"></i>
+                        </div>
+                        <span>PORTADAS</span>
                     </div>
                 </a>
             </li>

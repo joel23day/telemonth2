@@ -3,8 +3,8 @@
         <ul class="navbar-item flex-row">
             <li class="nav-item theme-logo">
                 <a href="index.html">
-                    <img src="assets/img/c3.png" class="navbar-logo" alt="logo">
-                    <b style="font-size: 30px; color:#363638">CINTHIA</b>
+                    <img src="assets/img/LOGOOF.png" class="navbar-logo" alt="logo">
+                    <b style="font-size: 30px; color:#363638">TELEMONTH</b>
                 </a>
             </li>
         </ul>
@@ -16,7 +16,7 @@
         <line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg></a>
 
 
-    <livewire:search-controller>
+    {{-- <livewire:search-controller> --}}
 
         <ul class="navbar-item flex-row navbar-dropdown">
 

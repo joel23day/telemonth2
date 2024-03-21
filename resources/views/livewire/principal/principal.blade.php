@@ -45,5 +45,14 @@
 @endforeach
 
 
-@include('livewire.principal.login')
+
+
+
+
 {{-- @include('layouts.theme.scripts') --}}
+
+<script>
+    $(document).ready(function() {
+        $('#miModal').modal('show'); // Abre el modal automáticamente al cargar la página
+    });
+</script>

@@ -73,6 +73,7 @@
         </div>
     </div>
     @include('livewire.anuncios.form')
+    @include('livewire.anuncios.modal')
 
 </div>
 

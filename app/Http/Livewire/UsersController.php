@@ -2,12 +2,24 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
-use Livewire\Component;
+use Spatie\Permission\Models\Role;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Livewire\Component;
+use App\Models\User;
+use App\Models\Venta;
+use Maatwebsite\Excel\Facades\Excel;
+use Spatie\Permission\Models\Permission;
+use DB;
+use App\Imports\UsersImport;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Mail\EnviarCorreo;
+use App\Models\Curso;
+use App\Models\Cursoporusuario;
 
-class Users extends Component
+class UsersController extends Component
 {
     use WithPagination;
     use WithFileUploads;
@@ -189,16 +201,12 @@ class Users extends Component
 
     public function destroy(User $user)
     {
-        if($user){
-            $sales = Venta::where('usuario_id', $user->id)->count();
-            if($sales > 0) {
-                $this->emit('user-withsales','No es posible eliminar el usuario por que tiene ventas registradas');
-            } else {
+
                 $user->delete();
                 $this->resetUI();
                 $this->emit('user_deleted', 'Usuario eliminado');
-            }
-        }
+
+
     }
 
     public function ToggleUserStatus($userId, $checked)
